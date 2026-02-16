@@ -1,0 +1,1 @@
+kubectl apply -f https://raw.githubusercontent.com/Lucasfernandez19/argocd-enterprise/main/argocd-apps-structure/root-argocd-app.yml
