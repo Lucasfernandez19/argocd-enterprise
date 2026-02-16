@@ -12,6 +12,8 @@ spec:
         owner: Lucasfernandez19
         repo: argocd-enterprise
         # kubectl apply -f https://raw.githubusercontent.com/Lucasfernandez19/argocd-enterprise/main/preview-environments/pr-generator/pr-generator.yml
+        labels:
+          - preview-ready
       requeueAfterSeconds: 180
   template:
     metadata:
