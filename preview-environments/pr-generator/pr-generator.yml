@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: my-preview-apps
+  namespace: argocd  
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - pullRequest:
+      github:
+        owner: Lucasfernandez19
+        repo: argocd-enterprise
+        # kubectl apply -f https://raw.githubusercontent.com/Lucasfernandez19/argocd-enterprise/main/preview-environments/pr-generator/pr-generator.yml
+      requeueAfterSeconds: 180
+  template:
+    metadata:
+      name: 'myapp-{{.branch}}'
+    spec:
+      source:
+        repoURL: https://github.com/Lucasfernandez19/argocd-enterprise.git
+        targetRevision: HEAD
+        path: preview-environments/kustomize-preview-app/ 
+        kustomize:
+          images:
+            - 'docker.io/kostiscodefresh/my-preview-app:{{.branch_slug}}'
+      project: "default"
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: 'preview-{{.branch_slug}}'
+      syncPolicy:
+        automated:
+          prune: true  
+        syncOptions:
+        - CreateNamespace=true 

@@ -15,7 +15,24 @@ spec:
       - path: argocd-apps-structure/apps/*/envs/prod-eu      
   template:      
     metadata:
-      name: '{{index .path.segments 2}}-{{index .path.segments 4}}' 
+      name: '{{index .path.segments 2}}-{{index .path.segments 4}}'
+      #significa:
+        #.path.segments = el path dividido por / en un arreglo.
+        #index ... 2 = toma el 3er segmento (nombre de la app).
+        #index ... 4 = toma el 5to segmento (entorno/región).
+        #Los une con -.
+        
+        #Para un path como:
+
+        #argocd-apps-structure/apps/orders/envs/prod-eu
+        #los segmentos son:
+          #0: argocd-apps-structure
+          #1: apps
+          #2: orders
+          #3: envs
+          #4: prod-eu
+        #Resultado del name:
+          #orders-prod-eu
     spec:
       # The project the application belongs to.
       project: default
