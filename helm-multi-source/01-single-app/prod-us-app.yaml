@@ -24,6 +24,7 @@ spec:
     - repoURL: 'https://github.com/Lucasfernandez19/argocd-enterprise.git'
       targetRevision: HEAD
       ref: values
+    # kubectl apply -f https://raw.githubusercontent.com/Lucasfernandez19/argocd-enterprise/main/helm-multi-source/01-single-app/prod-us-app.yaml
   syncPolicy:
     syncOptions:
       - CreateNamespace=true  
