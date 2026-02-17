@@ -52,6 +52,7 @@ spec:
             - $values/helm-multi-source/my-values/regions/{{.region}}-values.yaml                
             - $values/helm-multi-source/my-values/envs/{{.env}}-values.yaml
         - repoURL: 'https://github.com/Lucasfernandez19/argocd-enterprise.git'
+        # kubectl apply -f https://raw.githubusercontent.com/Lucasfernandez19/argocd-enterprise/main/helm-multi-source/02-appset/all-my-envs.yaml
           targetRevision: HEAD
           ref: values
       
